@@ -1,20 +1,22 @@
-/* Общие стили */
+/* ======================================================= */
+/* ГЛАВНЫЕ СТИЛИ И ФОН */
+/* ======================================================= */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     color: #333;
     
-    /* ПРАВКА 1: Фоновая картинка */
-    background-image: url('pc.jpg'); /* Замените на имя вашего файла! */
+    /* ФОН ИЗОБРАЖЕНИЕМ */
+    background-image: url('pc.jpg'); /* !!! ЗАМЕНИТЕ на имя вашего файла! */
     background-size: cover;
     background-attachment: fixed; /* Фиксированный фон при прокрутке */
     background-position: center;
 }
 
 header {
-    /* ПРАВКА 3: Полупрозрачный черный фон для заголовка */
-    background-color: rgba(0, 0, 0, 0.6); /* Черный с 60% прозрачностью */
+    /* Полупрозрачный черный фон для заголовка (40% прозрачности) */
+    background-color: rgba(0, 0, 0, 0.4); 
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -26,25 +28,29 @@ header h1 {
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-/* Секция выбора домиков */
+/* ======================================================= */
+/* СЕКЦИЯ ВЫБОРА ДОМИКОВ (MOBILE-FIRST - стили для телефона) */
+/* ======================================================= */
 .house-selection {
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    padding: 40px 20px;
-    flex-wrap: wrap;
+    flex-direction: column; /* На телефоне: карточки в столбец */
+    align-items: center; /* Центрируем по горизонтали */
+    padding: 20px 10px;
+    gap: 20px; /* Отступ между карточками */
 }
 
 /* Карточка домика */
 .house-card {
-    background-color: rgba(255, 255, 255, 0.9); /* Слегка прозрачный фон карточек */
+    background-color: rgba(255, 255, 255, 0.9); /* Слегка прозрачный фон */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
-    width: 300px;
+    width: 90%; /* Ширина для телефона */
+    max-width: 400px; /* Ограничиваем максимальную ширину */
     text-align: center;
     cursor: pointer;
     transition: transform 0.3s, box-shadow 0.3s;
+    margin: 0;
 }
 
 .house-card:hover {
@@ -60,7 +66,7 @@ header h1 {
 .house-image-placeholder img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     display: block;
 }
 
@@ -92,7 +98,9 @@ header h1 {
     background-color: #5c8d89;
 }
 
-/* --- Модальное окно (Всплывающее) --- */
+/* ======================================================= */
+/* ПОЛНОЭКРАННОЕ МОДАЛЬНОЕ ОКНО (ГАЛЕРЕЯ) */
+/* ======================================================= */
 
 .modal {
     display: none; 
@@ -102,35 +110,31 @@ header h1 {
     top: 0;
     width: 100%;
     height: 100%;
-    overflow-y: auto; /* Для прокрутки содержимого, если оно не помещается */
-    
-    /* ПРАВКА 2: Затемнение на весь экран */
-    background-color: rgba(0, 0, 0, 0.85); /* Более темный фон для контраста */
+    overflow-y: auto; /* Разрешаем прокрутку внутри модального окна */
+    background-color: rgba(0, 0, 0, 0.85); 
     padding: 20px 0;
     box-sizing: border-box;
 }
 
 .modal-content {
     background-color: white;
-    /* Убираем 'margin: 5% auto;' для полноэкранного вида */
     padding: 30px;
-    border-radius: 0; /* Убираем скругление для полного экрана */
+    border-radius: 0; 
     width: 100%; 
-    max-width: 1200px; /* Ограничим ширину контента, но не модального окна */
-    min-height: 100vh;
-    box-shadow: none; /* Убираем тень */
+    max-width: 1200px; /* Максимальная ширина контента */
+    min-height: 100vh; /* Минимальная высота на весь экран */
+    box-shadow: none; 
     position: relative;
-    margin: 0 auto; /* Центрируем контент */
+    margin: 0 auto; 
 }
 
-/* Изменения в стилях для галереи и текста */
 .close-button {
     color: #aaa;
-    font-size: 40px; /* Увеличим кнопку закрытия */
-    position: fixed; /* Фиксируем, чтобы было легко нажать */
+    font-size: 40px; 
+    position: fixed; 
     top: 15px;
     right: 30px;
-    z-index: 11; /* Выше модального контента */
+    z-index: 11; 
     background: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
     padding: 0 10px;
@@ -144,27 +148,24 @@ header h1 {
 }
 
 .modal-gallery {
+    position: relative; 
     text-align: center;
     margin-bottom: 30px;
 }
 
-/* ИСПРАВЛЕНИЕ: Гарантируем, что главное фото видно полностью */
-/* ИСПРАВЛЕНИЕ: Гарантируем, что главное фото видно полностью и не занимает весь экран */
+/* Стиль для ГЛАВНОГО ФОТО (не обрезается, уменьшается, чтобы поместиться) */
 .main-image {
     width: 100%;
-    /* Устанавливаем максимальную высоту, чтобы фото не было слишком большим */
-    max-height: 75vh; /* Максимум 75% от высоты экрана */
-    height: auto; /* Позволяет сохранять пропорции */
+    max-height: 75vh; 
+    height: auto; 
     max-width: 100%;
-    /* КЛЮЧ: contain гарантирует, что фото не будет обрезано, 
-       оно будет уменьшено, чтобы уместиться в max-height */
-    object-fit: contain; 
+    object-fit: contain; /* КЛЮЧ: Фото не обрезается */
     border-radius: 6px;
     margin-bottom: 15px;
     background-color: #f0f0f0; 
 }
-}
 
+/* Миниатюры */
 .thumbnails {
     display: flex;
     justify-content: center;
@@ -174,9 +175,9 @@ header h1 {
 }
 
 .thumbnails img {
-    width: 100px; /* Увеличим миниатюры */
+    width: 100px; 
     height: 75px;
-    object-fit: cover;
+    object-fit: cover; 
     cursor: pointer;
     border-radius: 4px;
     opacity: 0.7;
@@ -191,7 +192,7 @@ header h1 {
 
 .modal-title {
     color: #385f5e;
-    font-size: 2.5em; /* Увеличим заголовок */
+    font-size: 2.5em; 
     margin-top: 0;
 }
 
@@ -214,13 +215,14 @@ header h1 {
     font-size: 1.5em;
 }
 
+/* Кнопка бронирования */
 .book-button {
     display: block;
     width: 100%;
-    max-width: 400px; /* Ограничим ширину кнопки */
-    margin: 40px auto 20px auto; /* Центрируем кнопку */
+    max-width: 400px; 
+    margin: 40px auto 20px auto; 
     text-align: center;
-    padding: 18px; /* Увеличим padding */
+    padding: 18px; 
     background-color: #4CAF50;
     color: white;
     text-decoration: none;
@@ -233,19 +235,13 @@ header h1 {
     background-color: #45a049;
     transform: translateY(-2px);
 }
-/* --- Стили для стрелок галереи --- */
 
-.modal-gallery {
-    /* Делаем контейнер относительным, чтобы стрелки позиционировались внутри него */
-    position: relative; 
-    text-align: center;
-    margin-bottom: 30px;
-}
+/* --- Стили для стрелок галереи --- */
 
 .gallery-arrow {
     cursor: pointer;
     position: absolute;
-    top: 50%; /* Центрируем по вертикали */
+    top: 50%; 
     transform: translateY(-50%);
     width: auto;
     padding: 16px;
@@ -255,9 +251,9 @@ header h1 {
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
-    background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
+    background-color: rgba(0, 0, 0, 0.6); 
     border: none;
-    z-index: 5; /* Чтобы стрелка была над фото */
+    z-index: 5; 
 }
 
 .gallery-arrow:hover {
@@ -265,16 +261,109 @@ header h1 {
 }
 
 .prev-arrow {
-    left: 20px; /* Отступ слева */
+    left: 20px; 
     border-radius: 3px 0 0 3px;
 }
 
 .next-arrow {
-    right: 20px; /* Отступ справа */
+    right: 20px; 
     border-radius: 0 3px 3px 0;
 }
 
-/* Убираем стили стрелок с миниатюр */
 .thumbnails .gallery-arrow {
     display: none;
+}
+
+/* ======================================================= */
+/* АДАПТАЦИЯ (МЕДИА-ЗАПРОСЫ) */
+/* ======================================================= */
+
+/* Стили для экранов ШИРЕ 768px (Планшеты/Компьютеры) */
+@media (min-width: 768px) {
+    
+    .house-selection {
+        /* Переход от вертикального стека к горизонтальному ряду */
+        flex-direction: row; 
+        justify-content: center; 
+        gap: 30px;
+        padding: 40px 20px;
+    }
+
+    .house-card {
+        /* Установка ширины для ПК */
+        width: 300px; 
+        margin: 0;
+    }
+}
+
+/* Стили для телефонов с шириной МЕНЬШЕ 600px */
+@media (max-width: 600px) {
+
+    .modal-content {
+        padding: 15px; 
+    }
+
+    .main-image {
+        max-height: 50vh; 
+    }
+    
+    .gallery-arrow {
+        font-size: 18px; 
+        padding: 12px;
+        left: 5px; 
+        right: 5px;
+    }
+    
+    .thumbnails img {
+        width: 60px; 
+        height: 45px;
+        gap: 5px;
+    }
+
+    .book-button {
+        font-size: 1.1em;
+        padding: 12px;
+    }
+    
+    .close-button {
+        font-size: 30px;
+        right: 15px;
+    }
+}
+/* ======================================================= */
+/* СТИЛИ ПОДВАЛА (FOOTER) */
+/* ======================================================= */
+footer {
+    /* Полупрозрачный фон, чтобы гармонировал с заголовком */
+    background-color: rgba(0, 0, 0, 0.6); 
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px; /* Отступ от карточек */
+    width: 100%;
+    /* Добавляем тень сверху для отделения от контента */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5); 
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 1em;
+}
+
+footer a {
+    color: #a4c9c8; /* Светлый цвет для ссылок */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Адаптация подвала для маленьких экранов */
+@media (max-width: 600px) {
+    footer p {
+        font-size: 0.9em;
+    }
 }
