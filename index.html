@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выберите свой домик</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Выберите свой уютный домик</h1>
+    </header>
+
+    <main class="house-selection">
+        
+        <div class="house-card" data-house="house1">
+            <div class="house-image-placeholder">
+                <img src="house1_thumb.jpg" alt="Фото домика с мансардой">
+            </div>
+            <h2>Домик с мансардой</h2>
+            <p class="price">от 7 000 ₽ / ночь</p>
+            <button class="details-button">Подробнее</button>
+        </div>
+
+        <div class="house-card" data-house="house2">
+            <div class="house-image-placeholder">
+                <img src="house2_thumb.jpg" alt="Фото маленького домика">
+            </div>
+            <h2>Маленький домик</h2>
+            <p class="price">от 6 000 ₽ / ночь</p>
+            <button class="details-button">Подробнее</button>
+        </div>
+
+    </main>
+
+    <div id="house-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-gallery">
+                <img id="modal-main-image" src="" alt="Фотография домика" class="main-image">
+                
+                <button class="gallery-arrow prev-arrow" id="prev-btn">&#10094;</button>
+                <button class="gallery-arrow next-arrow" id="next-btn">&#10095;</button>
+                
+                <div class="thumbnails" id="modal-thumbnails">
+                    </div>
+            </div>
+            <h3 id="modal-title"></h3>
+            <p id="modal-price" class="modal-price"></p>
+            <div class="modal-description-section">
+                <h4>Описание:</h4>
+                <p id="modal-description"></p>
+            </div>
+            <a href="https://t.me/starocketbot" target="_blank" class="book-button">
+                Забронировать
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

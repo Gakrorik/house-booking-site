@@ -1,0 +1,280 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    
+    /* ПРАВКА 1: Фоновая картинка */
+    background-image: url('pc.jpg'); /* Замените на имя вашего файла! */
+    background-size: cover;
+    background-attachment: fixed; /* Фиксированный фон при прокрутке */
+    background-position: center;
+}
+
+header {
+    /* ПРАВКА 3: Полупрозрачный черный фон для заголовка */
+    background-color: rgba(0, 0, 0, 0.6); /* Черный с 60% прозрачностью */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header h1 {
+    margin: 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Секция выбора домиков */
+.house-selection {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+}
+
+/* Карточка домика */
+.house-card {
+    background-color: rgba(255, 255, 255, 0.9); /* Слегка прозрачный фон карточек */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.house-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.house-image-placeholder {
+    height: 200px;
+    overflow: hidden;
+}
+
+.house-image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.house-card h2 {
+    font-size: 1.5em;
+    margin: 15px 0 10px;
+    color: #385f5e;
+}
+
+.price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #a45a52;
+    margin-bottom: 15px;
+}
+
+.details-button {
+    background-color: #385f5e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.details-button:hover {
+    background-color: #5c8d89;
+}
+
+/* --- Модальное окно (Всплывающее) --- */
+
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Для прокрутки содержимого, если оно не помещается */
+    
+    /* ПРАВКА 2: Затемнение на весь экран */
+    background-color: rgba(0, 0, 0, 0.85); /* Более темный фон для контраста */
+    padding: 20px 0;
+    box-sizing: border-box;
+}
+
+.modal-content {
+    background-color: white;
+    /* Убираем 'margin: 5% auto;' для полноэкранного вида */
+    padding: 30px;
+    border-radius: 0; /* Убираем скругление для полного экрана */
+    width: 100%; 
+    max-width: 1200px; /* Ограничим ширину контента, но не модального окна */
+    min-height: 100vh;
+    box-shadow: none; /* Убираем тень */
+    position: relative;
+    margin: 0 auto; /* Центрируем контент */
+}
+
+/* Изменения в стилях для галереи и текста */
+.close-button {
+    color: #aaa;
+    font-size: 40px; /* Увеличим кнопку закрытия */
+    position: fixed; /* Фиксируем, чтобы было легко нажать */
+    top: 15px;
+    right: 30px;
+    z-index: 11; /* Выше модального контента */
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    padding: 0 10px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+}
+
+.modal-gallery {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* ИСПРАВЛЕНИЕ: Гарантируем, что главное фото видно полностью */
+/* ИСПРАВЛЕНИЕ: Гарантируем, что главное фото видно полностью и не занимает весь экран */
+.main-image {
+    width: 100%;
+    /* Устанавливаем максимальную высоту, чтобы фото не было слишком большим */
+    max-height: 75vh; /* Максимум 75% от высоты экрана */
+    height: auto; /* Позволяет сохранять пропорции */
+    max-width: 100%;
+    /* КЛЮЧ: contain гарантирует, что фото не будет обрезано, 
+       оно будет уменьшено, чтобы уместиться в max-height */
+    object-fit: contain; 
+    border-radius: 6px;
+    margin-bottom: 15px;
+    background-color: #f0f0f0; 
+}
+}
+
+.thumbnails {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.thumbnails img {
+    width: 100px; /* Увеличим миниатюры */
+    height: 75px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 4px;
+    opacity: 0.7;
+    transition: opacity 0.2s, border 0.2s;
+    border: 2px solid transparent;
+}
+
+.thumbnails img:hover, .thumbnails img.active {
+    opacity: 1;
+    border: 2px solid #5c8d89;
+}
+
+.modal-title {
+    color: #385f5e;
+    font-size: 2.5em; /* Увеличим заголовок */
+    margin-top: 0;
+}
+
+.modal-price {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #a45a52;
+    margin-bottom: 20px;
+}
+
+.modal-description-section {
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.modal-description-section h4 {
+    color: #5c8d89;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    font-size: 1.5em;
+}
+
+.book-button {
+    display: block;
+    width: 100%;
+    max-width: 400px; /* Ограничим ширину кнопки */
+    margin: 40px auto 20px auto; /* Центрируем кнопку */
+    text-align: center;
+    padding: 18px; /* Увеличим padding */
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.5em;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.book-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+/* --- Стили для стрелок галереи --- */
+
+.modal-gallery {
+    /* Делаем контейнер относительным, чтобы стрелки позиционировались внутри него */
+    position: relative; 
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.gallery-arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 50%; /* Центрируем по вертикали */
+    transform: translateY(-50%);
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
+    border: none;
+    z-index: 5; /* Чтобы стрелка была над фото */
+}
+
+.gallery-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-arrow {
+    left: 20px; /* Отступ слева */
+    border-radius: 3px 0 0 3px;
+}
+
+.next-arrow {
+    right: 20px; /* Отступ справа */
+    border-radius: 0 3px 3px 0;
+}
+
+/* Убираем стили стрелок с миниатюр */
+.thumbnails .gallery-arrow {
+    display: none;
+}
